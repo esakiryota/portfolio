@@ -1,3 +1,14 @@
+import {
+  Box,
+  Button,
+  Heading,
+  SimpleGrid,
+  Text,
+  useColorModeValue,
+  VisuallyHidden,
+  Flex,
+  Spacer,
+} from "@chakra-ui/react"
 import { Suspense } from "react"
 import { Image, Link, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
@@ -16,35 +27,60 @@ const UserInfo = () => {
 
   if (currentUser) {
     return (
-      <>
-        <button
-          className="button small"
-          onClick={async () => {
-            await logoutMutation()
-          }}
-        >
-          Logout
-        </button>
-        <div>
-          User id: <code>{currentUser.id}</code>
-          <br />
-          User role: <code>{currentUser.role}</code>
-        </div>
-      </>
+      <Box>
+        <Flex>
+          <Box p="2">
+            <Heading size="md">Chakra App</Heading>
+          </Box>
+          <Spacer />
+          <Box>
+            <Button
+              colorScheme="teal"
+              mr="4"
+              className="button small"
+              onClick={async () => {
+                await logoutMutation()
+              }}
+            >
+              Logout
+            </Button>
+            <Button colorScheme="teal">
+              User id: <code>{currentUser.id}</code>
+            </Button>
+            <Button colorScheme="teal">
+              User role: <code>{currentUser.role}</code>
+            </Button>
+          </Box>
+        </Flex>
+      </Box>
     )
   } else {
     return (
       <>
-        <Link href={Routes.SignupPage()}>
-          <a className="button small">
-            <strong>Sign Up</strong>
-          </a>
-        </Link>
-        <Link href={Routes.LoginPage()}>
-          <a className="button small">
-            <strong>Login</strong>
-          </a>
-        </Link>
+        <Box>
+          <Flex>
+            <Box p="2">
+              <Heading size="md">Chakra App</Heading>
+            </Box>
+            <Spacer />
+            <Box>
+              <Button colorScheme="teal" mr="4">
+                <Link href={Routes.SignupPage()}>
+                  <a className="button small">
+                    <strong>Sign Up</strong>
+                  </a>
+                </Link>
+              </Button>
+              <Button colorScheme="teal">
+                <Link href={Routes.LoginPage()}>
+                  <a className="button small">
+                    <strong>Login</strong>
+                  </a>
+                </Link>
+              </Button>
+            </Box>
+          </Flex>
+        </Box>
       </>
     )
   }
@@ -53,8 +89,6 @@ const UserInfo = () => {
 const Home: BlitzPage = () => {
   return (
     <div>
-      <h1>Hello, world!</h1>
-
       <Suspense fallback="Loading...">
         <UserInfo />
       </Suspense>
