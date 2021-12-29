@@ -15,11 +15,29 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
+import styles from "./Index.module.css"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
  */
+
+const BgImage = () => {
+  return (
+    <>
+      <h1>RYOTA ESAKI</h1>
+      <p>Welcome to my homepage!</p>
+      <ul>
+        <li>home</li>
+        <li>works</li>
+        <li>biography</li>
+        <li>skills</li>
+        <li>researchs</li>
+        <li>favorites</li>
+      </ul>
+    </>
+  )
+}
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -44,12 +62,12 @@ const UserInfo = () => {
             >
               Logout
             </Button>
-            <Button colorScheme="teal">
+            {/* <Button colorScheme="teal">
               User id: <code>{currentUser.id}</code>
             </Button>
             <Button colorScheme="teal">
               User role: <code>{currentUser.role}</code>
-            </Button>
+            </Button> */}
           </Box>
         </Flex>
       </Box>
@@ -90,7 +108,7 @@ const Home: BlitzPage = () => {
   return (
     <div>
       <Suspense fallback="Loading...">
-        <UserInfo />
+        <BgImage />
       </Suspense>
     </div>
   )
